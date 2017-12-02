@@ -1,0 +1,54 @@
+/*Give the organiser's name of the concert in the Assembly Rooms after the first of Feb, 1997. (1 point possible)*/
+
+SELECT musician.m_name as organiser 
+FROM concert 
+JOIN musician ON musician.m_no = concert.concert_organiser 
+WHERE concert_venue = 'assembly rooms' 
+AND con_date >  '1997-0-01';
+
+/*Find all the performers who played guitar or violin and were born in England. (1 point possible)*/
+
+select m_name from musician where m_no in(select perf_is from performer where instrument='guitar' or instrument='violin' and born_in in(select place_no from place where place_country='england'));
+
+/*List the names of musicians who have conducted concerts in USA together with the towns and dates of these concerts. (1 point possible)*/
+
+select m_name,p.place_town,c.con_date from musician m inner join concert c on m.m_no=c.concert_organiser join place p on c.concert_in=p.place_no where c.concert_in=p.place_no and p.place_country='usa';
+
+/*How many concerts have featured at least one composition by Andy Jones? List concert date, venue and the composition's title. (1 point possible)/*
+
+
+select pfrmnc_no,m_name,p.place_town,co.con_date from musician m join performance c on m.m_no=c.performed join place p on c.performed_in=p.place_no join concert co on co.concert_no=c.pfrmnc_no where m.m_name='andy jones';
+
+/*List the different instruments played by the musicians and avg number of musicians who play the instrument. (1 point possible)*/
+
+
+
+/*List the names, dates of birth and the instrument played of living musicians who play a instrument which Theo also plays. (1 point possible)/*
+
+
+/*List the name and the number of players for the band whose number of players is greater than the average number of players in each band. (1 point possible)*/
+
+
+/*List the names of musicians who both conduct and compose and live in Britain. (1 point possible)*/
+
+
+/*Show the least commonly played instrument and the number of musicians who play it. (1 point possible)*/
+
+
+/*List the bands that have played music composed by Sue Little; Give the titles of the composition in each case. (1 point possible)*/
+
+
+/*List the name and town of birth of any performer born in the same city as James First.(1 point possible)*/
+
+
+/*Create a list showing for EVERY musician born in Britain the number of compositions and the number of instruments played. (1 point possible)*/
+
+
+/*Give the band name, conductor and contact of the bands performing at the most recent concert in the Royal Albert Hall. (1 point possible)*/
+
+
+/*Give a list of musicians associated with Glasgow. Include the name of the musician and the nature of the association - one or more of 'LIVES_IN', 'BORN_IN', 'PERFORMED_IN' AND 'IN_BAND_IN'. (1 point possible)*/
+
+
+/*Jeff Dawn plays in a band with someone who plays in a band with Sue Little. Who is it and what are the bands? (1 point possible)*/
+
